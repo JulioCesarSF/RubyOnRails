@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby.exe
+APP_PATH = File.expand_path('../config/application', __dir__)
+require_relative '../config/boot'
+require 'rails/commands'
+
+if ARGV.first == 's' || ARGV.first == 'server'
+  require 'rails/commands/server'
+  module Rails
+    class Server
+      def default_options
+        super.merge(Host: ENV["IP"], Port: ENV["PORT"])
+      end
+    end
+  end
+end
