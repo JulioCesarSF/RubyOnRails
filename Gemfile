@@ -4,8 +4,10 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
-
+# bootstrap
+gem 'rails-assets-bootstrap', '3.3.7', source: 'http://insecure.rails-assets.org'
+# notifyjs
+gem 'rails-assets-notifyjs', source: 'http://insecure.rails-assets.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Faker
@@ -36,6 +38,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+# rails-assets
+gem 'bundler', ">= 1.8.4"
 
 #fix turbo link
 gem 'coffee-script-source', '1.8.0'

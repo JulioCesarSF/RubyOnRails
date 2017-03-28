@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   # antes de fazer essas ações (:show, etc) deve ser feito o :set_contact
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :set_listar_tipos_contatos, only: [:new, :edit, :update, :create]
+  http_basic_authenticate_with name: "julio", password: "123", only: :destroy
 
   # GET /contacts
   # GET /contacts.json
@@ -32,7 +33,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to contacts_path, notice: I18n.t('messages.created') }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -46,7 +47,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+        format.html { redirect_to contacts_path, notice: I18n.t('messages.updated') }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -60,7 +61,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
+      format.html { redirect_to contacts_path, notice: I18n.t('messages.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -78,7 +79,7 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :Kind_id, :rmk,
+      params.require(:contact).permit(:name, :email, :kind_id, :rmk,
         address_attributes: [:street, :city, :state],
         phones_attributes: [:id, :phone, :_destroy])
     end
