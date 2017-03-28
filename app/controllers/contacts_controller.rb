@@ -2,7 +2,6 @@ class ContactsController < ApplicationController
   # antes de fazer essas ações (:show, etc) deve ser feito o :set_contact
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :set_listar_tipos_contatos, only: [:new, :edit, :update, :create]
-  http_basic_authenticate_with name: "julio", password: "123", only: :destroy
 
   # GET /contacts
   # GET /contacts.json
