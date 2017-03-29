@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   belongs_to :kind, optional: true
-  has_one :address, :inverse_of => :contact, dependent: destroy
-  has_many :phones, dependent: destroy
+  has_many :phones, dependent: :destroy
+  has_one :address, dependent: :destroy
 
   accepts_nested_attributes_for :address #aceitar atributos aninhados de endereço (no mesmo formulário)
   #aceitar telefones

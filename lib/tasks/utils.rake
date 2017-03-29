@@ -26,7 +26,7 @@ namespace :utils do
     end
     puts "Gerando Endreços (Addresses)...[OK]"
 
-    # criar contatos
+    # criar telefones
     puts "Gerando Telefones (Phones)..."
     Contact.all.each do |i| # andar pelos contatos cadastrar e adicionar telefone
       Random.rand(1..5).times do |k|
